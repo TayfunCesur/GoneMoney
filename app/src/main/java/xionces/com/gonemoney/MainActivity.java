@@ -1,5 +1,7 @@
 package xionces.com.gonemoney;
 
+import android.app.DatePickerDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -10,9 +12,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.DatePicker;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -21,6 +25,10 @@ public class MainActivity extends AppCompatActivity {
     private List<Expense> records;
     ListView listView;
     public String[] Columns = {"_id", "Description", "Datetime", "isMinus", "Amount" , "Category"};
+
+    private Calendar calendar;
+    private int year, month, day;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-            startActivity(new Intent(MainActivity.this, Datainput.class));
+                startActivity(new Intent(MainActivity.this, Datainput.class));
             }
         });
     }
@@ -57,15 +65,20 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            return true;
+            calendar = Calendar.getInstance();
+            year = calendar.get(Calendar.YEAR);
+            month = calendar.get(Calendar.MONTH);
+            day = calendar.get(Calendar.DAY_OF_MONTH);
+            showDialog(999);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
-    protected void onResume() {
-        super.onResume();
+    protected void onRestart() {
+        super.onRestart();
         records.clear();
         records = getRecords();
     }
@@ -102,6 +115,39 @@ public class MainActivity extends AppCompatActivity {
 
         }
         return list;
+    }
+
+
+    private DatePickerDialog.OnDateSetListener myDateListener = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker arg0, int arg1, int arg2, int arg3) {
+            year = arg1;
+            month = arg2+1;
+            day = arg3;
+            String date = day+"/"+month+"/"+year;
+            List<Expense> expenses = new ArrayList<>();
+            for (int i = 0 ; i< records.size();i++)
+            {
+             if (records.get(i).date.equals(date))
+             {
+                 expenses.add(records.get(i));
+             }
+
+            }
+
+            ListViewAdapter adapter = new ListViewAdapter(getApplicationContext(),expenses);
+            listView.setAdapter(adapter);
+
+        }
+    };
+
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        // TODO Auto-generated method stub
+        if (id == 999) {
+            return new DatePickerDialog(this, myDateListener, year, month, day);
+        }
+        return null;
     }
 
 }

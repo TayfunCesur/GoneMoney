@@ -73,8 +73,8 @@
 
     <com.dd.CircularProgressButton
         android:id="@+id/circularButton1"
-        android:layout_width="196dp"
-        android:layout_height="64dp"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
         android:layout_marginTop="26dp"
         android:textColor="@color/cpb_white"
         android:textSize="18sp"
