@@ -21,10 +21,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/description"
-        android:layout_below="@+id/date"
-        android:layout_centerHorizontal="true"
-        android:layout_centerInParent="true"
-        android:layout_marginTop="5dp" />
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/imageView"
+        android:layout_alignStart="@+id/imageView" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -32,12 +31,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/amount"
-        android:layout_marginTop="23dp"
-        android:layout_below="@+id/description"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="39dp"
-        android:layout_marginEnd="39dp" />
+        android:layout_below="@+id/category"
+        android:layout_alignLeft="@+id/description"
+        android:layout_alignStart="@+id/description" />
 
     <TextView
         android:layout_width="match_parent"
@@ -45,16 +41,20 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="Medium Text"
         android:id="@+id/category"
-        android:layout_alignTop="@+id/amount"
-        android:layout_toStartOf="@+id/amount"
-        android:layout_marginLeft="10dp"
-        android:layout_toLeftOf="@+id/amount" />
+        android:layout_below="@+id/description"
+        android:layout_toStartOf="@+id/description"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <ImageView
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/imageView"
-        android:layout_alignTop="@+id/date"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
 </RelativeLayout>
