@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">GoneMoney</string>
+    <string name="action_settings">Settings</string>
+    <string name="Upload">Accept</string>
+    <string name="Error">Error</string>
+    <string name="Complete">Complete</string>
+</resources>

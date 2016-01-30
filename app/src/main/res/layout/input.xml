@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/description"
+        android:layout_marginTop="19dp"
+        android:layout_below="@+id/datepicker"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Description"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:id="@+id/datepicker"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="37dp"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_press"
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/amount"
+        android:layout_marginTop="39dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="Amount"
+        android:layout_below="@+id/description"
+        android:layout_centerHorizontal="true"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textColor="@color/colorPrimaryDark" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/spinner"
+        android:layout_below="@id/amount"
+        android:layout_alignLeft="@+id/amount"
+        android:layout_alignStart="@+id/amount"
+        android:layout_alignRight="@+id/amount"
+        android:layout_alignEnd="@+id/amount"
+        android:layout_marginTop="20dp"
+        >
+    </Spinner>
+
+
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:layout_marginTop="26dp"
+        android:textColor="@color/colorPrimaryDark"
+        android:textOff="Expense"
+        android:textOn="Income"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true" />
+
+
+
+    <com.dd.CircularProgressButton
+        android:id="@+id/circularButton1"
+        android:layout_width="196dp"
+        android:layout_height="64dp"
+        android:layout_marginTop="26dp"
+        android:textColor="@color/cpb_white"
+        android:textSize="18sp"
+        app:cpb_cornerRadius="48dp"
+        app:cpb_paddingProgress="10dp"
+        app:cpb_textComplete="@string/Complete"
+        app:cpb_textError="@string/Error"
+        app:cpb_textIdle="@string/Upload"
+        android:layout_below="@+id/switch1"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>
