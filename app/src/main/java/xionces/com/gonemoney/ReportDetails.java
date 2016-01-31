@@ -3,7 +3,9 @@ package xionces.com.gonemoney;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,6 +15,7 @@ public class ReportDetails extends AppCompatActivity {
 
     List<Expense> expenseList;
     Detail detail = new Detail();
+    TextView totalincome,totalexpense,total_food_exp,total_cig_exp,total_alch_exp,total_trans_exp,total_homerent_exp,total_invoice_exp,total_other_exp;
 
 
     @Override
@@ -23,13 +26,20 @@ public class ReportDetails extends AppCompatActivity {
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
         int a = b.getInt("pos");
-        setTitle(Report.months[a] +" Report Details");
+        setTitle(Report.months[a] + " Report Details");
 
-        expenseList = MainActivity.records;
+        init();
+
+        for (int i = 0;i<MainActivity.records.size();i++)
+        {
+            if (Integer.parseInt(MainActivity.records.get(i).date.split("/")[1])-1 == a)
+            {
+                expenseList.add(MainActivity.records.get(i));
+            }
+        }
 
         for (int i = 0;i<expenseList.size();i++)
         {
-
             if (expenseList.get(i).isMinus)
             {
                 switch (expenseList.get(i).category)
@@ -72,7 +82,33 @@ public class ReportDetails extends AppCompatActivity {
         }
 
 
-        String x = ";";
+        totalincome.setText("Toplam Gelen Para : " +detail.totalincome+" TL");
+        totalexpense.setText("Toplam Harcama : "+detail.totalexpense+" TL");
+        total_food_exp.setText("Yiyecek : "+ detail.food_expense+" TL");
+        total_cig_exp.setText("Sigara : "+ detail.cigarette_expense+" TL");
+        total_alch_exp.setText("Alkol : "+ detail.alcohol_expense+" TL");
+        total_trans_exp.setText("Ulaşım : "+ detail.transportation_expense+" TL");
+        total_homerent_exp.setText("Ev Kirası : "+ detail.homerent_expense+" TL");
+        total_invoice_exp.setText("Faturalar : "+ detail.invoice_expense+" TL");
+        total_other_exp.setText("Diğer : "+ detail.other_expense+" TL");
 
     }
+
+    private void init()
+    {
+        totalincome = (TextView) findViewById(R.id.totalincome);
+        totalexpense = (TextView) findViewById(R.id.totalexpense);
+        total_food_exp = (TextView) findViewById(R.id.textView2);
+        total_cig_exp = (TextView) findViewById(R.id.textView3);
+        total_alch_exp = (TextView) findViewById(R.id.textView4);
+        total_trans_exp = (TextView) findViewById(R.id.textView5);
+        total_homerent_exp = (TextView) findViewById(R.id.textView6);
+        total_invoice_exp = (TextView) findViewById(R.id.textView7);
+        total_other_exp = (TextView) findViewById(R.id.textView8);
+        expenseList = new ArrayList<>();
+    }
+
+
+
+
 }
