@@ -3,6 +3,7 @@ package xionces.com.gonemoney;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ public class Datainput extends AppCompatActivity {
     CircularProgressButton accept;
     int gelirgider;
     Spinner category;
+    boolean check = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,15 +73,23 @@ public class Datainput extends AppCompatActivity {
                 if (isMinus.isChecked()) gelirgider = 0;
                 else    gelirgider = 1;
                 accept.setProgress(50);
-                if (insertData(desc.getText().toString(),amount.getText().toString(),datepicker.getText().toString(),gelirgider,category.getSelectedItem().toString()))
+                if (!check)
                 {
-                    accept.setProgress(100);
-                    Toast.makeText(Datainput.this, "Input successful!", Toast.LENGTH_SHORT).show();
+                    if (insertData(desc.getText().toString(),amount.getText().toString(),datepicker.getText().toString(),gelirgider,category.getSelectedItem().toString()))
+                    {
+                        accept.setProgress(100);
+                        Toast.makeText(Datainput.this, "Input successful!", Toast.LENGTH_SHORT).show();
+                        check = true;
+                    }
+                    else
+                    {
+                        accept.setProgress(-1);
+                        Toast.makeText(getApplicationContext(),"Something went wrong :(",Toast.LENGTH_LONG).show();
+                    }
                 }
                 else
                 {
-                    accept.setProgress(-1);
-                    Toast.makeText(getApplicationContext(),"Something went wrong :(",Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(Datainput.this,MainActivity.class));
                 }
             }
         });
