@@ -40,8 +40,7 @@ public class MainActivity extends AppCompatActivity {
         records = getRecords();
         listView = (ListView) findViewById(R.id.listView);
 
-        ListViewAdapter adapter = new ListViewAdapter(getApplicationContext(),records);
-        listView.setAdapter(adapter);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         records.clear();
         records = getRecords();
+        ListViewAdapter adapter = new ListViewAdapter(getApplicationContext(),records);
+        listView.setAdapter(adapter);
     }
 
     private List<Expense> getRecords()
