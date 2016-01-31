@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Datainput"></activity>
-
+        <activity android:name=".Report"/>
+        <activity android:name=".ReportDetails"/>
         <receiver android:name=".DateReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.DATE_CHANGED" />

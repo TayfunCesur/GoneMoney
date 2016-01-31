@@ -22,7 +22,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     public static DbHelper dbHelper;
-    private List<Expense> records;
+    public static List<Expense> records;
     ListView listView;
     public String[] Columns = {"_id", "Description", "Datetime", "isMinus", "Amount" , "Category"};
 
@@ -39,7 +39,10 @@ public class MainActivity extends AppCompatActivity {
         dbHelper = new DbHelper(this);
         records = getRecords();
         listView = (ListView) findViewById(R.id.listView);
-
+        calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -67,11 +70,12 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         if (id == R.id.action_settings) {
-            calendar = Calendar.getInstance();
-            year = calendar.get(Calendar.YEAR);
-            month = calendar.get(Calendar.MONTH);
-            day = calendar.get(Calendar.DAY_OF_MONTH);
+
             showDialog(999);
+        }
+        if(id == R.id.reports)
+        {
+            startActivity(new Intent(MainActivity.this,Report.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -79,8 +83,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
+    protected void onStart() {
+        super.onStart();
         records.clear();
         records = getRecords();
         ListViewAdapter adapter = new ListViewAdapter(getApplicationContext(),records);

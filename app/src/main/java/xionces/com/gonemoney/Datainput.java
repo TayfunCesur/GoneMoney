@@ -51,6 +51,8 @@ public class Datainput extends AppCompatActivity {
                 new String[]{"Food","Cigarette","Alcohol","Transportation","Invoice","Home Rent","Other"});
         category.setAdapter(adapter);
 
+        setTitle("Data Input");
+
         Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);

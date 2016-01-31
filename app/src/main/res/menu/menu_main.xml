@@ -7,4 +7,9 @@
         android:orderInCategory="100"
         android:title="Pick Date"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/reports"
+        android:orderInCategory="100"
+        android:title="Reports"
+        app:showAsAction="never"/>
 </menu>
