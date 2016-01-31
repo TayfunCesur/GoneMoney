@@ -1,7 +1,7 @@
 package xionces.com.gonemoney;
 
 import android.content.Intent;
-import android.graphics.Color;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
@@ -82,16 +82,29 @@ public class ReportDetails extends AppCompatActivity {
         }
 
 
-        totalincome.setText("Toplam Gelen Para : " +detail.totalincome+" TL");
-        totalexpense.setText("Toplam Harcama : "+detail.totalexpense+" TL");
-        total_food_exp.setText("Yiyecek : "+ detail.food_expense+" TL");
-        total_cig_exp.setText("Sigara : "+ detail.cigarette_expense+" TL");
-        total_alch_exp.setText("Alkol : "+ detail.alcohol_expense+" TL");
-        total_trans_exp.setText("Ulaşım : "+ detail.transportation_expense+" TL");
-        total_homerent_exp.setText("Ev Kirası : "+ detail.homerent_expense+" TL");
-        total_invoice_exp.setText("Faturalar : "+ detail.invoice_expense+" TL");
-        total_other_exp.setText("Diğer : "+ detail.other_expense+" TL");
+        totalincome.setText("Total Income  : " +detail.totalincome+" TL");
+        totalexpense.setText("Total Expense : "+detail.totalexpense+" TL");
+        total_food_exp.setText("Food : "+ detail.food_expense+" TL");
+        total_food_exp.setTextColor(getResources().getColor(R.color.food));
 
+        total_cig_exp.setText("Cigarette : " + detail.cigarette_expense + " TL");
+        total_cig_exp.setTextColor(getResources().getColor(R.color.cigarette));
+
+
+        total_alch_exp.setText("Alcohol : " + detail.alcohol_expense + " TL");
+        total_alch_exp.setTextColor(getResources().getColor(R.color.alcohol));
+
+        total_trans_exp.setText("Transportation : " + detail.transportation_expense + " TL");
+        total_trans_exp.setTextColor(getResources().getColor(R.color.transport));
+
+        total_homerent_exp.setText("Home Rent : " + detail.homerent_expense + " TL");
+        total_homerent_exp.setTextColor(getResources().getColor(R.color.homerent));
+
+        total_invoice_exp.setText("Invoices : " + detail.invoice_expense + " TL");
+        total_invoice_exp.setTextColor(getResources().getColor(R.color.invoice));
+
+        total_other_exp.setText("Other : " + detail.other_expense + " TL");
+        total_other_exp.setTextColor(getResources().getColor(R.color.other));
         generategraph();
 
     }
@@ -114,19 +127,77 @@ public class ReportDetails extends AppCompatActivity {
     {
         PieGraph pg = (PieGraph)findViewById(R.id.graph);
         PieSlice slice = new PieSlice();
-        slice.setColor(Color.parseColor("#99CC00"));
-        slice.setValue(2);
+        slice.setColor(getResources().getColor(R.color.food));
+        slice.setValue(detail.food_expense);
+        if (detail.food_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.food));
+        }
         pg.addSlice(slice);
-        slice = new PieSlice();
-        slice.setColor(Color.parseColor("#FFBB33"));
-        slice.setValue(3);
-        pg.addSlice(slice);
-        slice = new PieSlice();
-        slice.setColor(Color.parseColor("#AA66CC"));
-        slice.setValue(8);
-        pg.addSlice(slice);
-        pg.setThickness(30);
-    }
 
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.cigarette));
+        slice.setValue(detail.cigarette_expense);
+        if (detail.cigarette_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.cigarette));
+        }
+        pg.addSlice(slice);
+
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.alcohol));
+        slice.setValue(detail.alcohol_expense);
+        if (detail.alcohol_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.alcohol));
+        }
+        pg.addSlice(slice);
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.transport));
+        slice.setValue(detail.transportation_expense);
+        if (detail.transportation_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.transport));
+        }
+        pg.addSlice(slice);
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.homerent));
+        slice.setValue(detail.homerent_expense);
+        if (detail.homerent_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.homerent));
+        }
+        pg.addSlice(slice);
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.invoice));
+        slice.setValue(detail.invoice_expense);
+        if (detail.invoice_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.invoice));
+        }
+        pg.addSlice(slice);
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.other));
+        slice.setValue(detail.other_expense);
+        if (detail.other_expense != 0)
+        {
+            slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
+                    R.mipmap.other));
+        }
+        pg.addSlice(slice);
+        pg.setThickness(100);
+    }
 
 }

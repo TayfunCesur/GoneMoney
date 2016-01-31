@@ -17,7 +17,7 @@ public class Report extends AppCompatActivity{
 
     ListView list;
     List<Expense> recordlist;
-    public static String[] months = new String[]{"Ocak","Şubat","Mart","Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık"};
+    public static String[] months = new String[]{"January","February","March","April","May","June","July","August","September","October","November","December"};
     private List<String> different_months = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
