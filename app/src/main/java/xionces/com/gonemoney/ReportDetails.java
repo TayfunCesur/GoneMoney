@@ -1,12 +1,17 @@
 package xionces.com.gonemoney;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 
+import com.echo.holographlibrary.PieGraph;
+import com.echo.holographlibrary.PieSlice;
+
 import java.util.ArrayList;
 import java.util.List;
+
 
 /**
  * Created by TayfunCESUR on 31.01.16.
@@ -46,31 +51,24 @@ public class ReportDetails extends AppCompatActivity {
                 {
                     case "Food":
                         detail.food_expense += Integer.parseInt(expenseList.get(i).amount);
-                        detail.totalexpense += detail.food_expense;
                         break;
                     case "Cigarette":
                         detail.cigarette_expense  += Integer.parseInt(expenseList.get(i).amount);
-                        detail.totalexpense += detail.cigarette_expense;
                         break;
                     case "Alcohol":
                         detail.alcohol_expense  += Integer.parseInt(expenseList.get(i).amount);
-                        detail.totalexpense += detail.alcohol_expense;
                         break;
                     case "Transportation":
                         detail.transportation_expense  += Integer.parseInt(expenseList.get(i).amount.trim());
-                        detail.totalexpense += detail.transportation_expense;
                         break;
                     case "Invoice":
                         detail.invoice_expense  += Integer.parseInt(expenseList.get(i).amount);
-                        detail.totalexpense += detail.invoice_expense;
                         break;
                     case "Home Rent":
                         detail.homerent_expense  += Integer.parseInt(expenseList.get(i).amount);
-                        detail.totalexpense += detail.homerent_expense;
                         break;
                     case "Other":
                         detail.other_expense  += Integer.parseInt(expenseList.get(i).amount);
-                        detail.totalexpense += detail.other_expense;
                         break;
                 }
 
@@ -79,6 +77,8 @@ public class ReportDetails extends AppCompatActivity {
             {
                 detail.totalincome+=Integer.parseInt(expenseList.get(i).amount);
             }
+
+            detail.totalexpense = detail.food_expense+detail.cigarette_expense+detail.alcohol_expense+detail.transportation_expense+detail.invoice_expense+detail.homerent_expense+detail.other_expense;
         }
 
 
@@ -91,6 +91,8 @@ public class ReportDetails extends AppCompatActivity {
         total_homerent_exp.setText("Ev Kirası : "+ detail.homerent_expense+" TL");
         total_invoice_exp.setText("Faturalar : "+ detail.invoice_expense+" TL");
         total_other_exp.setText("Diğer : "+ detail.other_expense+" TL");
+
+        generategraph();
 
     }
 
@@ -108,7 +110,23 @@ public class ReportDetails extends AppCompatActivity {
         expenseList = new ArrayList<>();
     }
 
-
+    private void generategraph()
+    {
+        PieGraph pg = (PieGraph)findViewById(R.id.graph);
+        PieSlice slice = new PieSlice();
+        slice.setColor(Color.parseColor("#99CC00"));
+        slice.setValue(2);
+        pg.addSlice(slice);
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#FFBB33"));
+        slice.setValue(3);
+        pg.addSlice(slice);
+        slice = new PieSlice();
+        slice.setColor(Color.parseColor("#AA66CC"));
+        slice.setValue(8);
+        pg.addSlice(slice);
+        pg.setThickness(30);
+    }
 
 
 }
