@@ -26,7 +26,6 @@ import java.util.Calendar;
  */
 public class Datainput extends AppCompatActivity {
 
-    private Calendar calendar;
     private int year, month, day;
     EditText desc,amount;
     Button datepicker;
@@ -52,7 +51,7 @@ public class Datainput extends AppCompatActivity {
                 new String[]{"Food","Cigarette","Alcohol","Transportation","Invoice","Home Rent","Other"});
         category.setAdapter(adapter);
 
-        calendar = Calendar.getInstance();
+        Calendar calendar = Calendar.getInstance();
         year = calendar.get(Calendar.YEAR);
         month = calendar.get(Calendar.MONTH);
         day = calendar.get(Calendar.DAY_OF_MONTH);
