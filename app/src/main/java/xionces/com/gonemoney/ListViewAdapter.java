@@ -85,5 +85,4 @@ public class ListViewAdapter extends BaseAdapter {
         holder.category.setText("Kategori : "+ds.get(position).category);
         return view;
     }
-
 }

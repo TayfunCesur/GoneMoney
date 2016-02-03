@@ -91,6 +91,7 @@ public class Datainput extends AppCompatActivity {
                 else
                 {
                     startActivity(new Intent(Datainput.this,MainActivity.class));
+                    finish();
                 }
             }
         });
