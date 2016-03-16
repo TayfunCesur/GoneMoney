@@ -5,11 +5,12 @@
     <color name="colorAccent">#FF4081</color>
     <color name="list_minus_color">#9D1D36</color>
     <color name="list_plus_color">#88C425</color>
-    <color name="food">#599311</color>
+    <color name="food">#FFC107</color>
     <color name="cigarette">#FF7F00</color>
-    <color name="alcohol">#FFBB33</color>
+    <color name="alcohol">#607D8B</color>
     <color name="transport">#FF4081</color>
     <color name="homerent">#9D1D36</color>
     <color name="invoice">#307E8B</color>
     <color name="other">#8F00FF</color>
+    <color name="income">#3F51B5</color>
 </resources>
