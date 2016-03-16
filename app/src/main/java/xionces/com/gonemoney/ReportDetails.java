@@ -30,14 +30,15 @@ public class ReportDetails extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle b = intent.getExtras();
-        int a = b.getInt("pos");
-        setTitle(Report.months[a] + " Report Details");
+        String a = b.getString("pos");
+        setTitle(a + " Report Details");
 
         init();
 
         for (int i = 0;i<MainActivity.records.size();i++)
         {
-            if (Integer.parseInt(MainActivity.records.get(i).date.split("/")[1])-1 == a)
+            String ax = Report.months[Integer.parseInt(MainActivity.records.get(i).date.split("/")[1])-1];
+            if (ax.equals(a))
             {
                 expenseList.add(MainActivity.records.get(i));
             }
@@ -83,6 +84,7 @@ public class ReportDetails extends AppCompatActivity {
 
 
         totalincome.setText("Total Income  : " +detail.totalincome+" TL");
+        totalincome.setTextColor(getResources().getColor(R.color.income));
         totalexpense.setText("Total Expense : "+detail.totalexpense+" TL");
         total_food_exp.setText("Food : "+ detail.food_expense+" TL");
         total_food_exp.setTextColor(getResources().getColor(R.color.food));
@@ -196,6 +198,11 @@ public class ReportDetails extends AppCompatActivity {
             slice.setIcon(BitmapFactory.decodeResource(getApplicationContext().getResources(),
                     R.mipmap.other));
         }
+        pg.addSlice(slice);
+
+        slice = new PieSlice();
+        slice.setColor(getResources().getColor(R.color.income));
+        slice.setValue(Float.parseFloat(String.valueOf(detail.totalincome)));
         pg.addSlice(slice);
         pg.setThickness(100);
     }
